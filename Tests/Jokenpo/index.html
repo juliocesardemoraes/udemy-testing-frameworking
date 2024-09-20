@@ -1,0 +1,44 @@
+<html>
+  <!--Add your HTML code here-->
+  <p id="jogador"></p>
+  <p id="pc"></p>
+  <p id="resultado"></p>
+  <button id="pedra" onclick="rolarResultado('pedra')">pedra</button>
+  <button id="papel" onclick="rolarResultado('papel')">papel</button>
+  <button id="tesoura" onclick="rolarResultado('tesoura')">tesoura</button>
+  <script>
+    const resultado = document.getElementById("resultado");
+    const jogador = document.getElementById("jogador");
+    const pc = document.getElementById("pc");
+
+    function getRandomInt(max) {
+      return Math.floor(Math.random() * max);
+    }
+
+    function rolarResultado(valor) {
+      const possibilidades = ["pedra", "papel", "tesoura"];
+      const numeroGerado = getRandomInt(3);
+      const escolhaPC = possibilidades[numeroGerado];
+      jogador.textContent = "Jogador: " + valor;
+      pc.textContent = "PC: " + escolhaPC;
+
+      const ganhos = {
+        pedra: "tesoura",
+        papel: "pedra",
+        tesoura: "papel",
+      };
+
+      // se o valor for igual ao numeroGerado empate.
+      // se o valor for pedra - tesoura ganhou.
+      // se o valor não for esse - perdeu
+
+      if (valor == escolhaPC) {
+        resultado.textContent = "Você empatou";
+      } else if (ganhos[valor] == escolhaPC) {
+        resultado.textContent = "Você ganhou!";
+      } else {
+        resultado.textContent = "Você perdeu";
+      }
+    }
+  </script>
+</html>
