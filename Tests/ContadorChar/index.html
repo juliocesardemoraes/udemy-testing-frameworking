@@ -1,0 +1,38 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <textarea id="text" oninput="checkTextarea(event)"></textarea>
+    <p id="charCount"></p>
+    <button id="sendButton" onclick="sendText()">Enviar</button>
+    <p id="errorMessage"></p>
+
+    <script>
+      const sendButton = document.getElementById("sendButton");
+      const textarea = document.getElementById("text");
+      const charCount = document.getElementById("charCount");
+      const errorMessage = document.getElementById("errorMessage");
+
+      function sendText() {
+        console.log(textarea.value);
+      }
+
+      function checkTextarea(event) {
+        const textLength = event.target.value.length;
+        charCount.textContent = textLength;
+
+        if (textLength < 5) {
+          errorMessage.textContent = "Erro: O número mínimo de caracteres é 5";
+        } else if (textLength > 100) {
+          errorMessage.textContent =
+            "Erro: O número máximo de caracteres é 100";
+        } else {
+          errorMessage.textContent = "";
+        }
+      }
+    </script>
+  </body>
+</html>

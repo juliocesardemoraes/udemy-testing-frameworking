@@ -1,0 +1,29 @@
+<html>
+  <div>
+    <label for="valor">valor</label>
+    <input type="number" name="valor" id="valor" placeholder="valor" />
+  </div>
+
+  <div>
+    <label for="porcentagem">porcentagem</label>
+    <input
+      type="number"
+      name="porcentagem"
+      id="porcentagem"
+      placeholder="porcentagem"
+    />
+  </div>
+  <button id="calculateTip" onclick="calcular()">calcular gorjeta</button>
+  <p id="gorjeta"></p>
+
+  <script>
+    const valor = document.getElementById("valor");
+    const porcentagem = document.getElementById("porcentagem");
+    const gorjetaTag = document.getElementById("gorjeta");
+
+    function calcular() {
+      const gorjeta = Number(valor.value / 100) * Number(porcentagem.value);
+      gorjetaTag.textContent = gorjeta;
+    }
+  </script>
+</html>

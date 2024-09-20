@@ -1,0 +1,17 @@
+<html>
+  <!--Add your HTML code here-->
+  <p id="dado"></p>
+  <button id="dadobotao" onclick="lancardado()">Lançar moeda</button>
+
+  <script>
+    const moedaTag = document.getElementById("dado");
+    function getRandomInt(max) {
+      return Math.floor(Math.random() * max + 1);
+    }
+
+    function lancardado() {
+      const rolagem = getRandomInt(6);
+      moedaTag.textContent = rolagem;
+    }
+  </script>
+</html>

@@ -1,0 +1,18 @@
+<html>
+  <!--Add your HTML code here-->
+  <p id="moeda"></p>
+  <button id="lancarmoeda" onclick="lancarmoeda()">Lançar moeda</button>
+
+  <script>
+    const moedaTag = document.getElementById("moeda");
+    function getRandomInt(max) {
+      return Math.floor(Math.random() * max);
+    }
+
+    function lancarmoeda() {
+      const rolagem = getRandomInt(2);
+      const caraoucoroa = rolagem === 0 ? "cara" : "coroa";
+      moedaTag.textContent = caraoucoroa;
+    }
+  </script>
+</html>
