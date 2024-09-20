@@ -1,0 +1,43 @@
+<html>
+  <p id="nomesorteado"></p>
+  <button id="sortearbotao" onclick="sortearNome()">Sortear Nome</button>
+
+  <script>
+    // NÂO ALTERE O ARRAY DE NOMES SENÂO OS TESTES VÃO ACUSAR ALGUM TIPO
+    // DE ERRO.
+    const nomes = [
+      { name: "julio", email: "julio@gmail.com" },
+      { name: "maria", email: "maria@gmail.com" },
+      { name: "carlos", email: "carlos@gmail.com" },
+      { name: "ana", email: "ana@gmail.com" },
+      { name: "paulo", email: "paulo@gmail.com" },
+      { name: "lucia", email: "lucia@gmail.com" },
+      { name: "roberto", email: "roberto@gmail.com" },
+      { name: "julia", email: "julia@gmail.com" },
+      { name: "fernando", email: "fernando@gmail.com" },
+      { name: "leticia", email: "leticia@gmail.com" },
+      { name: "rafael", email: "rafael@gmail.com" },
+      { name: "patricia", email: "patricia@gmail.com" },
+      { name: "joão", email: "joao@gmail.com" },
+      { name: "bianca", email: "bianca@gmail.com" },
+      { name: "andre", email: "andre@gmail.com" },
+      { name: "gabriela", email: "gabriela@gmail.com" },
+      { name: "rodrigo", email: "rodrigo@gmail.com" },
+      { name: "mariana", email: "mariana@gmail.com" },
+      { name: "bruno", email: "bruno@gmail.com" },
+      { name: "flavia", email: "flavia@gmail.com" },
+    ];
+    // NÃO ALTERE O ARRAY ACIMA!
+    // CASO TENHA ALTERADO, NA DESCRIÇÃO DA TAREFA TEM ESTE MESMO ARRAY
+    const nomeTag = document.getElementById("nomesorteado");
+
+    function getRandomInt(max) {
+      return Math.floor(Math.random() * max);
+    }
+
+    function sortearNome() {
+      const index = getRandomInt(nomes.length);
+      nomeTag.textContent = nomes[index].name;
+    }
+  </script>
+</html>
