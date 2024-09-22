@@ -1,3 +1,18 @@
+describe("HTML - ", () => {
+  it('deve ter um campo de paragrafo com o id "piadaGerada" que vai mostrar o nome da piada gerada', () => {
+    const pEl = document.getElementById("piadaGerada");
+    expect(pEl).not.toBeNull();
+    expect(pEl.tagName.toLowerCase()).toBe("p");
+  });
+
+  it('deve ter um botão com id "gerarPiada" e um atributo onclick', () => {
+    const dadobotaoEl = document.getElementById("gerarPiada");
+    expect(dadobotaoEl).not.toBeNull();
+    expect(dadobotaoEl.hasAttribute("onclick")).toBeTrue();
+    expect(dadobotaoEl.tagName.toLowerCase()).toBe("button");
+  });
+});
+
 const piadasTio = [
   {
     id: 1,
@@ -113,3 +128,50 @@ const piadasTio = [
     tema: "esporte",
   },
 ];
+
+describe("Funcionalidade - ", () => {
+  it("deve mostrar no paragrafo piadaGerada uma piada gerada pelo array de piadas", () => {
+    const pEl = document.getElementById("piadaGerada");
+    const botaoEl = document.getElementById("gerarPiada");
+    botaoEl.click();
+    expect(pEl).not.toBeNull();
+    let match = false;
+
+    for (let i = 0; i < piadasTio.length; i++) {
+      if (pEl.textContent === piadasTio[i].piada) match = true;
+    }
+
+    expect(match).toBeTrue();
+  });
+
+  it("deve gerar uma piada randomica", () => {
+    const pEl = document.getElementById("piadaGerada");
+    const botaoEl = document.getElementById("gerarPiada");
+    botaoEl.click();
+    expect(pEl).not.toBeNull();
+    let match = false;
+    let piadas = [];
+
+    for (let x = 0; x < 20; x++) {
+      botaoEl.click();
+      for (let i = 0; i < piadasTio.length; i++) {
+        if (pEl.textContent === piadasTio[i].piada) {
+          if (!piadas.includes(piadasTio[i].piada))
+            piadas.push(piadasTio[i].piada);
+
+          match = true;
+          break;
+        }
+      }
+    }
+    let isRandom = piadas.length > 1 ? true : false;
+
+    if (!isRandom)
+      console.log(
+        "O seu código não é randomico, para 20 testes feitos ele não utilizou valores diferentes"
+      );
+
+    expect(match).toBeTrue();
+    expect(isRandom).toBeTrue();
+  });
+});
