@@ -20,6 +20,16 @@ describe("main.js", function () {
       expect(window.updateResult).toHaveBeenCalledTimes(1);
     });
 
+    it("validate expression if the second number is invalid", function () {
+      spyOn(window, "updateResult");
+      calculate("3+a");
+      expect(window.updateResult).toHaveBeenCalled();
+      expect(window.updateResult).toHaveBeenCalledWith(
+        "Expression not recognized"
+      );
+      expect(window.updateResult).toHaveBeenCalledTimes(1);
+    });
+
     it("validate expression if the operation is invalid", function () {
       spyOn(window, "updateResult");
       calculate("3_3");
