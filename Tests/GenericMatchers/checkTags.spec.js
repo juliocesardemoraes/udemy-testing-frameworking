@@ -29,3 +29,28 @@ function validarTag(
     expect(genericTag.tagName.toLowerCase()).toBe(tag);
   });
 }
+
+function checkLength(
+  selector,
+  selectorLength = 1,
+  testDescription = "Teste de tamanho(length)-",
+  customWarning = null
+) {
+  it(`${testDescription}`, () => {
+    const checkLengthSelector = selector.length >= selectorLength;
+    let message = customWarning;
+
+    if (customWarning === null) {
+      message = `O elemento ${selector} não tem length`;
+    }
+
+    expect(checkLengthSelector).withContext(message).not.toBeTrue();
+  });
+}
+
+// checkLength(
+//   list,
+//   1,
+//   "A listadeusuarios deve ser vazia no html",
+//   "O elemento listadeusuarios não deve ter nenhum li dentro dele, os itens devem ser inseridos pelo javascript"
+// );
