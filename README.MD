@@ -8,4 +8,6 @@
 
 E o teste vai dar certo.
 
-## Portanto precisamos garantir que a lista esteja limpa
+## Portanto precisamos garantir que a lista esteja limpa, para que o aluno não robe kkk
+
+### Vamos fazer isso adicionando na mão o input tmb

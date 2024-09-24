@@ -48,6 +48,23 @@ function checkLength(
   });
 }
 
+function formDispatchEvent(selectors = []) {
+  /*
+    const all = {tags: ["email", "nome"], value: [["jose","julio"], ["jose@gmail.com", "julio@gmail.com"]]};
+  */
+  const formElement = document.getElementsByTagName("form")[0];
+  const event = document.createEvent("Event");
+  event.initEvent("submit", true, true);
+
+  for (let i = 0; i < selectors.value[0].length; i++) {
+    for (let x = 0; x < selectors.tags.length; x++) {
+      const elementToGet = document.getElementById(selectors.tags[x]);
+      elementToGet.value = selectors.value[x][i];
+    }
+    formElement.dispatchEvent(event);
+  }
+}
+
 // checkLength(
 //   list,
 //   1,

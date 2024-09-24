@@ -1,0 +1,63 @@
+<html>
+  <p id="nomesorteado"></p>
+  <button id="sortearbotao" onclick="sortearNome()">Sortear Nome</button>
+
+  <br />
+  <br />
+
+  <form onsubmit="criarUsuario(event)">
+    <input
+      type="text"
+      name="nome"
+      id="nome"
+      value=""
+      placeholder="Digite o nome do usuário"
+    />
+    <br />
+    <input
+      type="email"
+      name="email"
+      id="email"
+      value=""
+      placeholder="Digite o email do usuário"
+    />
+    <br />
+    <button type="submit">Criar usuário</button>
+  </form>
+
+  <h2>Lista de usuários</h2>
+  <ul id="listadeusuarios"></ul>
+
+  <script>
+    let nomes = [{ nome: "teste", email: "teste@gmail.com" }];
+
+    const nomeTag = document.getElementById("nomesorteado");
+    const userListTag = document.getElementById("listadeusuarios");
+
+    function getRandomInt(max) {
+      return Math.floor(Math.random() * max);
+    }
+
+    function sortearNome() {
+      const index = getRandomInt(nomes.length);
+      nomeTag.textContent = nomes[index].nome;
+    }
+
+    function criarUsuario(event) {
+      event.preventDefault();
+      const formData = new FormData(event.target);
+      const user = {
+        nome: "",
+        email: "",
+      };
+      user.nome = formData.get("nome");
+      user.email = formData.get("email");
+
+      const userLi = document.createElement("li");
+      userLi.textContent = `${user.nome}: ${user.email}`;
+      nomes.push(user);
+
+      userListTag.append(userLi);
+    }
+  </script>
+</html>
