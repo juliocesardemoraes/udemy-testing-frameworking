@@ -1,4 +1,5 @@
 <html>
+  <!--Add your HTML code here-->
   <form onsubmit="criarUsuario(event)">
     <input
       type="text"
@@ -19,15 +20,17 @@
     <button type="submit">Criar usuário</button>
   </form>
 
-  <ul id="listadeusuarios"></ul>
+  <ul id="listadeusuarios">
+    <li>email: axz@gmail.com, nome: axz 2010</li>
+    <li>email: jcmcf2@gmail.com, nome: zephe</li>
+    <li>email: jcmcf3@gmail.com, nome: ninja</li>
+  </ul>
 
   <script>
     const list = document.getElementById("listadeusuarios");
-
     const users = [];
 
     function atualizarLista() {
-      // <li>email: email, nome: nome</li>
       list.innerHTML = "";
       for (let i = 0; i < users.length; i++) {
         const listItem = document.createElement("li");
@@ -44,12 +47,5 @@
       users.push({ nome: userName, email: userEmail });
       atualizarLista();
     }
-
-    const listUI = document
-      .getElementById("listadeusuarios")
-      .getElementsByTagName("li");
-    const user = document.getElementById("nome");
-    const email = document.getElementById("email");
-    const addUserForm = document.getElementsByTagName("form")[0];
   </script>
 </html>

@@ -40,7 +40,6 @@ function validarTag(
 
 describe("Html Form - ", () => {
   const formEl = document.getElementsByTagName("form")[0];
-  console.log("FF", formEl);
 
   let formButtonSelector = "";
   if (formEl) {
@@ -76,8 +75,6 @@ describe("Funcionalidade Form - ", () => {
   event.initEvent("submit", true, true);
 
   listParent.replaceChildren();
-  listParent.innerHTML = "";
-  console.log("LIST", listParent);
 
   const automateUserCreation = (userValue, emailValue) => {
     user.value = userValue;
@@ -92,15 +89,19 @@ describe("Funcionalidade Form - ", () => {
   ];
 
   it("Quando o usuário for criado devemos ter este usuário no listadeusuarios", () => {
-    // for (let i = 0; i < usersToCreate.length; i++) {
-    //   automateUserCreation(usersToCreate[i].user, usersToCreate[i].email);
-    // }
+    for (let i = 0; i < usersToCreate.length; i++) {
+      automateUserCreation(usersToCreate[i].user, usersToCreate[i].email);
+    }
+
+    if (list.length === 0) {
+      expect(false)
+        .withContext(`Erro na inserção de itens pelo formulário na lista html`)
+        .toBeTrue();
+    }
 
     for (let i = 0; i < list.length; i++) {
       const noEmail = list[i].textContent.includes(usersToCreate[i].email);
       const noUser = list[i].textContent.includes(usersToCreate[i].user);
-      console.log(noEmail);
-      console.log(noUser);
       expect(noEmail).withContext(`O email não existe na lista`).toBeTrue();
       expect(noUser)
         .withContext(`O nome do usuário não existe na lista`)
