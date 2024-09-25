@@ -69,8 +69,8 @@ describe("Funcionalidade Form - ", () => {
 
   const user = document.getElementById("nome");
   const email = document.getElementById("email");
-  const addUserForm = document.getElementsByTagName("form")[0];
 
+  const addUserForm = document.getElementsByTagName("form")[0];
   const event = document.createEvent("Event");
   event.initEvent("submit", true, true);
 

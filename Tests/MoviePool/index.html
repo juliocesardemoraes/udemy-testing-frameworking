@@ -1,10 +1,56 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-  </head>
-  <body></body>
+<html>
+  <form onsubmit="criarFilme(event)">
+    <input
+      type="text"
+      name="nome"
+      id="nome"
+      value=""
+      placeholder="Digite o nome da série"
+    />
+    <button type="submit">Adicionar série</button>
+  </form>
+
+  <h2>Lista de séries</h2>
+  <ul id="listadeseries"></ul>
+
+  <script>
+    let movieIndex = 0;
+    const tvShows = [];
+    const listaDeSeries = document.getElementById("listadeseries");
+
+    function criarFilmeTag(name, votes, index) {
+      const li = document.createElement("li");
+      li.innerHTML = `
+                ${name}: <span id="votes-${index}">${votes}</span>
+                <button onclick="upvote(${index})">Upvote</button>
+                <button onclick="downvote(${index})">Downvote</button>
+            `;
+      listaDeSeries.appendChild(li);
+      movieIndex++;
+    }
+
+    function criarFilme(event) {
+      event.preventDefault();
+      const formData = new FormData(event.target);
+      const tvshow = {
+        name: formData.get("nome"),
+        votes: 0,
+        movieIndex,
+      };
+      criarFilmeTag(tvshow.name, tvshow.votes, movieIndex);
+      tvShows.push(tvshow);
+    }
+
+    function upvote(index) {
+      const movieList = document.getElementById(`votes-${index}`);
+      const movieVote = Number(movieList.textContent) + 1;
+      movieList.textContent = String(movieVote);
+    }
+
+    function downvote(index) {
+      const movieList = document.getElementById(`votes-${index}`);
+      const movieVote = Number(movieList.textContent) - 1;
+      movieList.textContent = String(movieVote);
+    }
+  </script>
 </html>
-l
