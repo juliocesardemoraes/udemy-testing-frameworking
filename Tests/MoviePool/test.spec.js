@@ -74,20 +74,71 @@ describe("Criar Filme pelo formulário - ", function () {
 
   const listaDeSeries = document.getElementById("listadeseries");
 
-  nomeTag.textContent = "Game of thrones";
-  formButton.click();
+  it("Teste de criação de filme", () => {
+    listaDeSeries.innerHTML = "";
+    const movieList = ["Game of thrones", "Breaking Bad", "Avatar"];
+
+    for (let i = 0; i < movieList.length; i++) {
+      nomeTag.value = movieList[i];
+      formButton.click();
+    }
+
+    if (listaDeSeries.children.length === 0) {
+      expect(false).withContext(`A lista de séries esta vazia!`).toBeTrue();
+
+      return;
+    }
+
+    for (let i = 0; i < listaDeSeries.children.length; i++) {
+      expect(listaDeSeries.children[i].textContent.includes(movieList[i]))
+        .withContext(`O filme não foi inserido na lista corretamente!`)
+        .toBeTrue();
+    }
+  });
 
   it("Teste de votação", () => {
+    // Criar os itens
+    listaDeSeries.innerHTML = "";
+    const movieList = ["Game of thrones", "Breaking Bad", "Avatar"];
+
+    for (let i = 0; i < movieList.length; i++) {
+      nomeTag.value = movieList[i];
+      formButton.click();
+    }
+
+    if (listaDeSeries.children.length === 0) {
+      expect(false).withContext(`A lista de séries esta vazia!`).toBeTrue();
+
+      return;
+    }
+
     for (let i = 0; i < listaDeSeries.children.length; i++) {
       const buttons = listaDeSeries.children[i].getElementsByTagName("button");
       const spanTag = listaDeSeries.children[i].getElementsByTagName("span")[0];
       for (let x = 0; x < buttons.length; x++) {
-        console.log(buttons[x].textContent);
+        let spanValue = Number(spanTag.textContent);
         buttons[x].click();
-        console.log(spanTag.textContent);
+
+        if (buttons[x].textContent === "Upvote") {
+          console.log("CONTEÚDO DO HTML", spanTag.textContent);
+          console.log("VALOR DO SPAN INCREMENTADO", spanValue + 1);
+
+          if (Number(spanTag.textContent) === spanValue + 1) {
+            expect(false)
+              .withContext(
+                `Quando clicado no botão Upvote o valor não é incrementado em 1`
+              )
+              .toBe(true);
+          }
+        }
+        if (buttons[x].textContent === "Downvote") {
+          expect(Number(spanTag.textContent))
+            .withContext(
+              `Quando clicado no botão Downvote o valor não é decrementado em 1`
+            )
+            .toBe(spanValue - 1);
+        }
       }
     }
-
-    expect(false).toBeTrue();
   });
 });

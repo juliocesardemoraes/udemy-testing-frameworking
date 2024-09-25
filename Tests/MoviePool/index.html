@@ -13,9 +13,10 @@
   <h2>Lista de séries</h2>
   <ul id="listadeseries"></ul>
 
+  <button onclick="checkHTML()">Checar html</button>
+
   <script>
     let movieIndex = 0;
-    const tvShows = [];
     const listaDeSeries = document.getElementById("listadeseries");
 
     function criarFilmeTag(name, votes, index) {
@@ -25,7 +26,7 @@
                 <button onclick="upvote(${index})">Upvote</button>
                 <button onclick="downvote(${index})">Downvote</button>
             `;
-      listaDeSeries.appendChild(li);
+      listaDeSeries.append(li);
       movieIndex++;
     }
 
@@ -38,7 +39,6 @@
         movieIndex,
       };
       criarFilmeTag(tvshow.name, tvshow.votes, movieIndex);
-      tvShows.push(tvshow);
     }
 
     function upvote(index) {
@@ -51,6 +51,32 @@
       const movieList = document.getElementById(`votes-${index}`);
       const movieVote = Number(movieList.textContent) - 1;
       movieList.textContent = String(movieVote);
+    }
+
+    function checkHTML() {
+      listaDeSeries.innerHTML = "";
+      const nomeTag = document.getElementById("nome");
+      const movieList = ["Game of thrones", "Breaking Bad", "Avatar"];
+      const formButton = document
+        .getElementsByTagName("form")[0]
+        .getElementsByTagName("button")[0];
+
+      for (let i = 0; i < movieList.length; i++) {
+        nomeTag.value = movieList[i];
+        console.log(movieList[i]);
+        formButton.click();
+      }
+
+      for (let i = 0; i < listaDeSeries.children.length; i++) {
+        const buttons =
+          listaDeSeries.children[i].getElementsByTagName("button");
+        const spanTag =
+          listaDeSeries.children[i].getElementsByTagName("span")[0];
+
+        console.log(
+          listaDeSeries.children[i].textContent.includes(movieList[i])
+        );
+      }
     }
   </script>
 </html>
